@@ -1,0 +1,27 @@
+{
+  "name": "x-automatio",
+  "version": "1.0.0",
+  "description": "Automated daily tech Twitter thread system - runs free forever on GitHub Actions",
+  "main": "scripts/main.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node scripts/main.js",
+    "dev": "DRY_RUN=true node scripts/main.js",
+    "test:fetch": "node scripts/fetchNews.js",
+    "test:generate": "node scripts/generateThread.js",
+    "test:post": "DRY_RUN=true node scripts/postThread.js",
+    "test:full": "DRY_RUN=true node scripts/main.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "dotenv": "^16.4.5",
+    "puppeteer": "^22.6.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "rss-parser": "^3.13.0",
+    "twitter-api-v2": "^1.17.2",
+    "winston": "^3.11.0"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+.env
+data/logs/
+data/images/
+data/twitter_cookies.json
+*.log
+.DS_Store

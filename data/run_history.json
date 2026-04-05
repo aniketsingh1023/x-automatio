@@ -1,0 +1,82 @@
+[
+  {
+    "timestamp": "2026-04-05T09:22:42.172Z",
+    "status": "failed",
+    "error": "[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [503 Service Unavailable] Visibility check was unavailable. Please retry the request and contact support if the problem persists",
+    "articleCount": 5,
+    "tweetCount": 0,
+    "durationSeconds": 20.3
+  },
+  {
+    "timestamp": "2026-04-05T09:25:40.302Z",
+    "status": "failed",
+    "error": "[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 19.722677668s. [{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"19s\"}]",
+    "articleCount": 5,
+    "tweetCount": 0,
+    "durationSeconds": 15
+  },
+  {
+    "timestamp": "2026-04-05T09:57:33.298Z",
+    "status": "success",
+    "method": "dry-run",
+    "articleCount": 5,
+    "tweetCount": 6,
+    "durationSeconds": 29.1
+  },
+  {
+    "timestamp": "2026-04-05T09:59:12.096Z",
+    "status": "failed",
+    "error": "All posting methods exhausted. Last error: Waiting for selector `input[name=\"password\"]` failed: Waiting failed: 10000ms exceeded",
+    "articleCount": 5,
+    "tweetCount": 7,
+    "durationSeconds": 57.1
+  },
+  {
+    "timestamp": "2026-04-05T10:02:24.099Z",
+    "status": "failed",
+    "error": "All posting methods exhausted. Last error: Waiting for selector `input[name=\"password\"]` failed: Waiting failed: 10000ms exceeded",
+    "articleCount": 5,
+    "tweetCount": 5,
+    "durationSeconds": 55
+  },
+  {
+    "timestamp": "2026-04-05T10:04:03.254Z",
+    "status": "failed",
+    "error": "All posting methods exhausted. Last error: Password field not found. URL: https://x.com/, Title: Log in to X / X. Screenshot saved to data/login_debug.png — check what Twitter is showing.",
+    "articleCount": 5,
+    "tweetCount": 7,
+    "durationSeconds": 60.5
+  },
+  {
+    "timestamp": "2026-04-05T10:22:39.747Z",
+    "status": "failed",
+    "error": "All posting methods exhausted. Last error: Password field not found. URL: https://x.com/, Title: X. It’s what’s happening / X. Screenshot saved to data/login_debug.png — check what Twitter is showing.",
+    "articleCount": 5,
+    "tweetCount": 5,
+    "durationSeconds": 39.9
+  },
+  {
+    "timestamp": "2026-04-05T10:24:10.603Z",
+    "status": "failed",
+    "error": "All posting methods exhausted. Last error: Password field not found. URL: https://x.com/i/flow/login, Title: Log in to X / X. Screenshot saved to data/login_debug.png — check what Twitter is showing.",
+    "articleCount": 5,
+    "tweetCount": 6,
+    "durationSeconds": 40
+  },
+  {
+    "timestamp": "2026-04-05T10:29:36.698Z",
+    "status": "failed",
+    "error": "All posting methods exhausted. Last error: Tweet submit button not found",
+    "articleCount": 5,
+    "tweetCount": 7,
+    "durationSeconds": 39.9
+  },
+  {
+    "timestamp": "2026-04-05T10:32:50.523Z",
+    "status": "success",
+    "method": "puppeteer",
+    "articleCount": 5,
+    "tweetCount": 6,
+    "durationSeconds": 163.6
+  }
+]
