@@ -59,8 +59,6 @@ jobs:
         run: npm ci
 
       # ── 4. Puppeteer system deps ─────────────────────────────────────────────
-      # These are needed for headless Chromium on GitHub's Ubuntu runner.
-      # The `|| true` prevents failure if a package is already installed.
       - name: Install Puppeteer system dependencies
         run: |
           sudo apt-get update -qq
@@ -76,7 +74,6 @@ jobs:
             libpango-1.0-0 \
             libcairo2 \
             fonts-liberation \
-            libasound2 \
             libnspr4 \
             libnss3 \
             libatk1.0-0 \
@@ -84,10 +81,10 @@ jobs:
             libcups2 \
             libxss1 \
             libxtst6 || true
+          # libasound2 was renamed to libasound2t64 on Ubuntu 24+
+          sudo apt-get install -y libasound2t64 || sudo apt-get install -y libasound2 || true
 
       # ── 5. Restore data cache (posted_articles + cookies) ────────────────────
-      # This is the key to idempotency across runs.
-      # We always restore the latest available cache regardless of branch/commit.
       - name: Restore data cache
         id: restore-cache
         uses: actions/cache@v4
@@ -97,14 +94,22 @@ jobs:
           restore-keys: |
             x-automatio-data-
 
-      # ── 6. Run automation ────────────────────────────────────────────────────
+      # ── 6. Inject Twitter cookies from secret ────────────────────────────────
+      # Cookies allow Puppeteer to post without logging in (avoids bot detection)
+      # Add TWITTER_COOKIES secret = full JSON content of data/twitter_cookies.json
+      - name: Write Twitter cookies
+        run: |
+          mkdir -p data
+          echo '${{ secrets.TWITTER_COOKIES }}' > data/twitter_cookies.json
+
+      # ── 7. Run automation ────────────────────────────────────────────────────
       - name: Run thread automation
         env:
           # Gemini AI
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-1.5-flash
+          GEMINI_MODEL: gemini-2.5-flash
 
-          # Twitter API v2 (primary)
+          # Twitter API v2 (primary — requires paid plan, falls back to Puppeteer)
           TWITTER_APP_KEY: ${{ secrets.TWITTER_APP_KEY }}
           TWITTER_APP_SECRET: ${{ secrets.TWITTER_APP_SECRET }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
@@ -127,8 +132,7 @@ jobs:
 
         run: node scripts/main.js
 
-      # ── 7. Save data cache ───────────────────────────────────────────────────
-      # Always save so the next run inherits the updated posted_articles.json
+      # ── 8. Save data cache ───────────────────────────────────────────────────
       - name: Save data cache
         if: always()
         uses: actions/cache@v4
@@ -136,7 +140,7 @@ jobs:
           path: data/
           key: x-automatio-data-${{ github.run_id }}
 
-      # ── 8. Upload logs on failure ────────────────────────────────────────────
+      # ── 9. Upload logs on failure ────────────────────────────────────────────
       - name: Upload failure logs
         if: failure()
         uses: actions/upload-artifact@v4
