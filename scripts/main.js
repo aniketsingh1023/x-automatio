@@ -59,7 +59,7 @@ async function main() {
     // ── Stage 2: Generate ───────────────────────────────────────────────────
     logger.info('\n[2/3] Generating thread with Gemini…');
     tweets = await generateTwitterThread(articles);
-    logger.info(`      ${tweets.length}-tweet thread generated`);
+    logger.info(`      Tweet generated`);
 
     // ── Stage 3: Post ───────────────────────────────────────────────────────
     logger.info('\n[3/3] Posting thread…');

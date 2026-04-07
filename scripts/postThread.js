@@ -76,13 +76,9 @@ module.exports = { postThreadWithFallback };
 // ── Standalone test runner ────────────────────────────────────────────────────
 
 if (require.main === module) {
-  // A realistic sample thread to test posting logic end-to-end
+  // A realistic sample tweet to test posting logic end-to-end
   const sampleTweets = [
-    '1/5 Three AI model releases, one infrastructure shift, and a major acquisition happened in tech this week. Here is what matters.',
-    '2/5 Anthropic released Claude 3.5 with a 200K context window. For developers, this means entire codebases can fit in a single prompt without chunking strategies.',
-    '3/5 Google cut inference costs by 40% on Gemini Flash. Cheaper inference directly reduces the burn rate for any startup building on top of hosted models.',
-    '4/5 Meta open-sourced its next-generation multimodal model. Developers now have a production-grade vision+text model they can run on their own infra — no vendor lock-in.',
-    '5/5 The pattern: AI is becoming commodity infrastructure. Differentiation is shifting from model quality to speed, cost, and data pipelines. Follow for daily tech threads.',
+    'Anthropic dropped Claude 3.5 with a 200K context window. Entire codebases fit in one prompt — no chunking, no retrieval hacks. Google cut Gemini Flash inference costs 40% the same week. Cheap inference changes what\'s worth building. The moat is shifting from model quality to data pipelines.',
   ];
 
   postThreadWithFallback(sampleTweets)
