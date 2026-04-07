@@ -85,6 +85,18 @@ async function main() {
     return 0;
   } catch (err) {
     const duration = ((Date.now() - t0) / 1000).toFixed(1);
+
+    if (err.isSkip) {
+      logger.info(`\n— Skipped: ${err.message.replace('SKIP: ', '')}`);
+      recordRun({
+        status: 'skipped',
+        reason: err.message,
+        articleCount: articles.length,
+        durationSeconds: parseFloat(duration),
+      });
+      return 0;
+    }
+
     logger.error(`\n✗ Run failed after ${duration}s`, {
       error: err.message,
       stack: err.stack,

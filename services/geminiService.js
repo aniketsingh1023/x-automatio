@@ -80,11 +80,17 @@ function parseTweets(responseText) {
   // Strict JSON parse
   try {
     const parsed = JSON.parse(cleaned);
+    if (parsed.skip === true) {
+      const skipErr = new Error(`SKIP: ${parsed.reason || 'nothing worth posting today'}`);
+      skipErr.isSkip = true;
+      throw skipErr;
+    }
     if (Array.isArray(parsed.tweets) && parsed.tweets.length > 0) {
       return parsed.tweets.map(String).filter((t) => t.trim().length > 5);
     }
     throw new Error('tweets array missing or empty');
   } catch (jsonErr) {
+    if (jsonErr.isSkip) throw jsonErr;
     logger.warn('JSON parse failed, trying regex fallback', { error: jsonErr.message });
   }
 
